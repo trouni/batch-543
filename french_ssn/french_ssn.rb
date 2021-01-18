@@ -25,3 +25,4 @@ def key_valid?(ssn, key)
   ssn_without_key = ssn.delete(' ')[0...-2]
   return (97 - ssn_without_key.to_i) % 97 == key.to_i
 end
+
