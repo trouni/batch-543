@@ -2,8 +2,8 @@ class Task
   attr_reader :title
 
   def initialize(title)
-    @title = title
-    @done = false
+    @title = title # string
+    @done = false # boolean
   end
 
   def mark_as_done!
