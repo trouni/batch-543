@@ -2,14 +2,14 @@
 -- ordered alphabetically (no extra information)
 SELECT first_name, last_name, email
 FROM customers
-ORDER BY last_name ASC
+ORDER BY last_name ASC;
 
 -- List tracks (Name + Composer) of the Classical playlist
 SELECT tracks.name, tracks.composer
 FROM tracks
 JOIN playlist_tracks ON playlist_tracks.track_id = tracks.id
 JOIN playlists ON playlists.id = playlist_tracks.playlist_id
-WHERE playlists.name = 'Classical'
+WHERE playlists.name = 'Classical';
 
 -- List the 10 artists mostly listed in all playlists
 SELECT artists.name, COUNT(*) AS number_of_occurences
