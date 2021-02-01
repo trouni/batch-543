@@ -1,0 +1,17 @@
+<h1>My One Piece Restaurant App</h1>
+<h3>Add a new restaurant:</h3>
+<form action="/restaurants" method="post">
+  <label for="name">Name of the restaurant</label>
+  <input type="text" name="name">
+  <label for="city">City</label>
+  <input type="text" name="city">
+  <input type="submit">
+</form>
+<h3>This is the list of my favourite restaurants:</h3>
+<ul>
+  <% @restaurants.each do |restaurant| %>
+    <li>
+      <a href="/restaurants/<%= restaurant.id %>"><%= restaurant.name %></a>
+    </li>
+  <% end %>
+</ul>
