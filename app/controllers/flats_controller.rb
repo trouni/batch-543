@@ -2,11 +2,13 @@ class FlatsController < ApplicationController
   before_action :set_flat, only: [:show, :edit, :update, :destroy]
 
   def index
-    @flats = Flat.all
+    @flats = Flat.near("Tokyo Tower", 100)
     @markers = @flats.geocoded.map do |flat|
       {
         lat: flat.latitude,
-        lng: flat.longitude
+        lng: flat.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { flat: flat }),
+        image_url: helpers.asset_url('marker.png')
       }
     end
   end
