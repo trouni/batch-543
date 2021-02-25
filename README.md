@@ -247,7 +247,6 @@ document.getElementById('reviews').insertAdjacentHTML('afterBegin', '<%=j render
 
 Don't think of the `js.erb` files as actual views (because we're not reloading the page or rendering new HTML). Think of it simply as **some JS code you run on the current page** instead of sending HTML at the end of your controller action.
 
-
 ---
 
 ## HAPPY AJAXIFICATION!
