@@ -116,7 +116,7 @@ export default class extends Controller {
 ```
 
 
-### Data-Action
+### Data-action
 
 Listening to the `click` event on the button (`addEventListener`):
 
@@ -166,7 +166,36 @@ expandForm(event) {
 ```
 
 
-### Additional actions
+### New Action: Submit on Enter
+
+```js
+export default class extends Controller {
+  // ...
+  submitOnEnter(event) {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault()
+      this.formTarget.style.height = "0"
+      Rails.fire(this.formTarget, 'submit')
+    }
+  }
+}
+```
+
+We use `Rails.fire` (instead of `form.submit`) in order to submit the form *remotely*.
+
+*Make sure to add the `rails-ujs` plugin to Webpack in your `environment.js` file.*
+
+```js
+environment.plugins.prepend('Provide',
+  new webpack.ProvidePlugin({
+    // ...
+    Rails: ['@rails/ujs']
+  })
+);
+```
+
+
+### Adding the `data-action` in the view
 
 ```erb
 <div data-controller="collapsible-form" data-expanded-height=150>
@@ -178,18 +207,6 @@ expandForm(event) {
       data: { action: 'keydown->collapsible-form#submitOnEnter' }
     } %>
 </div>
-```
-
-```js
-export default class extends Controller {
-  // ...
-  submitOnEnter(event) {
-    if (event.key === 'Enter' && !event.shiftKey) {
-      event.preventDefault()
-      this.formTarget.submit()
-    }
-  }
-}
 ```
 
 
