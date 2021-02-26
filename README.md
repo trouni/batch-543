@@ -96,7 +96,7 @@ export default class extends Controller {
 }
 ```
 
-`this.countTarget` returns the first one, `this.countTargets` returns them all
+`this.formTarget` returns the first one, `this.formTargets` returns them all
 
 
 ### Connect
@@ -220,7 +220,7 @@ environment.plugins.prepend('Provide',
 ### Syntax
 
 - `data-controller="controller-name"`
-- `data-<controller-name>-target="targetName"="targetName"`
+- `data-<controller-name>-target="targetName"`
 - `data-action="event->controller-name#actionName"`
   
 ---
