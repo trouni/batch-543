@@ -1,0 +1,17 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8">
+      <%= image_tag "http://source.unsplash.com/collection/3099344/1000x500", width: "100%", class: "border shadow mb-5" %>
+      <h2>Reviews</h2>
+      <p><em><%= @restaurant.name %> has <%= pluralize @restaurant.reviews.size, "review" %></em></p>
+      <%= render 'reviews/collapsible_form', restaurant: @restaurant, review: @review %>
+      <div id="reviews">
+        <%= render(@restaurant.reviews.order(created_at: :desc)) || "Be the first to leave a review for #{@restaurant.name}" %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <%= render 'restaurants/info_card', restaurant: @restaurant %>
+    </div>
+  </div>
+</div>
+<div id="map" data-controller="mapbox"></div>
