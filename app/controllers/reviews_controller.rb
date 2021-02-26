@@ -11,7 +11,10 @@ class ReviewsController < ApplicationController
         format.js
       end
     else
-      render 'restaurants/show'
+      respond_to do |format|
+        format.html { render 'restaurants/show' }
+        format.js { render 'reviews/reload_form' }
+      end
     end
   end
 
