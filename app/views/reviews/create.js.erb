@@ -1,1 +1,4 @@
+// Inject the created review inside the <div id="reviews"></div>
 document.getElementById('reviews').insertAdjacentHTML('afterBegin', "<%=j render @review %>");
+// Hide the form
+document.getElementById('new_review').hidden = true

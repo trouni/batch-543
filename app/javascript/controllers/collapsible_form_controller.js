@@ -18,7 +18,8 @@ export default class extends Controller {
   submitOnEnter(event) {
     if (event.key === 'Enter' && !event.shiftKey) {
       event.preventDefault()
-      this.formTarget.style.height = "0"
+      // this.formTarget.style.height = "0"
+      // We will hide the form only if the review has been successfully created instead
       Rails.fire(this.formTarget, 'submit')
     }
   }
