@@ -267,7 +267,7 @@ Don't think of the `js.erb` files as actual views (because we're not reloading t
 
 ## Demo app
 
-You can [test the final app](https://restaurants_ajaxified_543.herokuapp.com) in production.
+You can [test the final app](https://restaurants-ajaxified-543.herokuapp.com) in production.
 
 ---
 
