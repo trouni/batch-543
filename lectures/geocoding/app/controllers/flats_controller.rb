@@ -2,7 +2,8 @@ class FlatsController < ApplicationController
   before_action :set_flat, only: [:show, :edit, :update, :destroy]
 
   def index
-    @flats = Flat.near("Tokyo Tower", 100)
+    # @flats = Flat.near("Tokyo Tower", 100)
+    @flats = Flat.all
     @markers = @flats.geocoded.map do |flat|
       {
         lat: flat.latitude,
