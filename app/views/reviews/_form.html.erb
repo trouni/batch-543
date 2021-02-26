@@ -1,0 +1,16 @@
+<div data-controller="collapsible-form" data-expanded-height="150px">
+  <button
+    class="btn btn-outline-primary w-100"
+    <%# data-action replaces documentSelector + addEventListener('click', () => { // Do some stuff here }) %>
+    data-action="click->collapsible-form#expandForm"
+    >Leave a review for <%= restaurant.name %>
+  </button>
+  <%= simple_form_for([ restaurant, review ],
+    remote: true,
+    # data-target replaces documentSelector)
+    html: { data: { collapsible_form_target: 'form', action: 'keydown->collapsible-form#submitOnEnter' } }
+  ) do |f| %>
+    <%= f.input :content, as: :text, label: "Leave a review" %>
+    <%#= f.submit "Submit", class: 'btn btn-primary' %>
+  <% end %>
+</div>
