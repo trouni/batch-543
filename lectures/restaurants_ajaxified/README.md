@@ -272,6 +272,13 @@ environment.plugins.prepend('Provide',
 
 You can [test the final app](https://restaurants-ajaxified-543.herokuapp.com) in production.
 
+To push this app on Heroku yourself, if you have cloned the lectures repository, navigate to the root of the repo and run the following lines:
+
+```shell
+heroku create --remote heroku_restaurants-ajaxified
+git subtree push --prefix lectures/restaurants-ajaxified heroku_restaurants-ajaxified main
+```
+
 ---
 
 ## HAPPY AJAXIFICATION!
