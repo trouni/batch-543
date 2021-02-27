@@ -1,10 +1,54 @@
-# Creating JavaScript components with Stimulus
+# AJAX in Rails
 
 ---
 
+## Keep the page context
+
+Let's fix the *scrolling back to the top* issue using JavaScript views in Rails.
+
+
+### Render JS views
+
+Rails controllers can render different formats based on the request’s “Accept” header:
+
+```rb
+# app/controllers/reviews_controller.rb
+# [...]
+  def create
+    # ...
+    if @review.save
+      respond_to do |format|
+        format.html { redirect_to restaurant_path(@restaurant) }
+        format.js
+      end
+    else
+  end
+```
+
+It will respond to requests that have `Accept: text/javascript` in their headers with a `js.erb` view.
+
+
+### Implement the `create.js.erb` view
+
+Add some JavaScript to insert the review partial at the beginning of the `#reviews` div.
+
+```js
+document.getElementById('reviews').insertAdjacentHTML('afterBegin', '<%=j render @review %>')
+```
+
+
+### WTH are the `js.erb` views?
+
+Don't think of the `js.erb` files as actual views (because we're not reloading the page or rendering new HTML). Think of it simply as **some JS code you run on the current page** instead of sending HTML at the end of your controller action.
+
+---
+
+# Creating JavaScript components with Stimulus
+
+
 ## Simple Component: Collapsible Form
 
-Let's create an "collapsible form" component for the `reviews#new` form, that expands when we click on a button.
+Let's create a "collapsible form" component for the `reviews#new` form, that expands when we click on a button.
 
 
 Let's do it in pure **JavaScript**
@@ -217,53 +261,12 @@ environment.plugins.prepend('Provide',
 - the `data-controller` wraps the other elements
 
 
-### Syntax
+### Stimulus syntax recap
 
 - `data-controller="controller-name"`
 - `data-<controller-name>-target="targetName"`
 - `data-action="event->controller-name#actionName"`
-  
----
-
-## AJAX in Rails
-
-Let's fix the *scrolling back to the top* issue using JavaScript views in Rails.
-
-
-### Render JS views
-
-Rails controllers can render different formats based on the request’s “Accept” header:
-
-```rb
-# app/controllers/reviews_controller.rb
-# [...]
-  def create
-    # ...
-    if @review.save
-      respond_to do |format|
-        format.html { redirect_to restaurant_path(@restaurant) }
-        format.js
-      end
-    else
-  end
-```
-
-It will respond to requests that have `Accept: text/javascript` in their headers with a `js.erb` view.
-
-
-### Implement the `create.js.erb` view
-
-Add some JavaScript to insert the review partial at the beginning of the `#reviews` div.
-
-```js
-document.getElementById('reviews').insertAdjacentHTML('afterBegin', '<%=j render @review %>')
-```
-
-
-### WTH are the `js.erb` views?
-
-Don't think of the `js.erb` files as actual views (because we're not reloading the page or rendering new HTML). Think of it simply as **some JS code you run on the current page** instead of sending HTML at the end of your controller action.
-
+ 
 
 ## Demo app
 
