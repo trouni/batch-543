@@ -109,21 +109,18 @@ Set the `data-controller` in a div that contains both:
 
 ### Data-target
 
-`data-<controller>-target` is the equivalent of `document.querySelector`
+`data-target` is the equivalent of `document.querySelector`
 
 ```erb
 <%= simple_form_for([ @restaurant, @review ],
                     html: { data: { collapsible_form_target: 'form' } },
                     remote: true) do |f| %>
-```
 
-Simple form will generate a form tag like this:
-
-```html
+<!-- Simple form will generate a form tag like this: -->
 <form action="..." data-collapsible-form-target="form" ... >
 ```
 
-`data-<controller-name>-target="targetName"`
+Syntax: `data-<controller-name>-target="targetName"`
 
 
 ### Targets
@@ -225,6 +222,7 @@ export default class extends Controller {
 }
 ```
 
+
 We use `Rails.fire` (instead of `form.submit`) in order to submit the form *remotely*.
 
 *Make sure to add the `rails-ujs` plugin to Webpack in your `environment.js` file.*
@@ -266,7 +264,7 @@ environment.plugins.prepend('Provide',
 - `data-controller="controller-name"`
 - `data-<controller-name>-target="targetName"`
 - `data-action="event->controller-name#actionName"`
- 
+
 
 ## Demo app
 
